@@ -52,5 +52,11 @@ class App {
         this.app.use(passport.initialize())
         this.app.use(passport.session())
     }
+
+    public getApp(): express.Application {
+        return this.app
+    }
     
 }
+
+export default App
