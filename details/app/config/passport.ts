@@ -1,6 +1,6 @@
 import passport from "passport";
 import passportLocal from "passport-local";
-import {getRepository} from "typeorm";
+import { getRepository } from "typeorm";
 import {User} from "../entity/user";
 
 const LocalStratergy = passportLocal.Strategy;

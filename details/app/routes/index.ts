@@ -1,7 +1,8 @@
-import {Request, Response, Router, NextFunction} from 'express'
+import { Request, Response, Router, NextFunction } from 'express'
 import authRoute from './auth'
-import {getRepository} from "typeorm";
-import {User} from "../entity/user";
+import { getRepository } from "typeorm";
+import { User } from "../entity/user";
+import { connect } from '../config/db';
 
 const route: Router = Router()
 
@@ -11,13 +12,15 @@ route.get('/ping', (req: Request, res: Response) => {
 
 route.post('/test/signup', async (req: Request, res: Response, next: NextFunction) => {
     try {
+        // const connection = await connect();
+        const userRepo = getRepository(User);
+        
         const nUser = new User();
 
         nUser.name = req.body.name;
         nUser.username = req.body.username;
-        nUser.hashPassword = req.body.password;
+        nUser.passwordHash = req.body.password;
 
-        const userRepo = getRepository(User);
         const user = await userRepo.save(nUser);
 
         res.status(200).json(user);

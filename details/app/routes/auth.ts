@@ -1,6 +1,6 @@
 import {NextFunction, Request, Response, Router} from 'express';
 import passport from "passport";
-import {User} from "../entity/user"
+import { User } from "../entity/user"
 import { IVerifyOptions } from "passport-local";
 
 const route: Router = Router()
@@ -20,7 +20,7 @@ route.post('/login',
 
                 return res.status(200).json(user);
             });
-        });
+        })(req, res, next);
 });
 
 route.post('/logout',(req: Request, res: Response, next: NextFunction) => {
