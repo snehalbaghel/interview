@@ -2,7 +2,6 @@ import { Request, Response, Router, NextFunction } from 'express'
 import authRoute from './auth'
 import { getRepository } from "typeorm";
 import { User } from "../entity/user";
-import { connect } from '../config/db';
 
 const route: Router = Router()
 
@@ -12,9 +11,7 @@ route.get('/ping', (req: Request, res: Response) => {
 
 route.post('/test/signup', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        // const connection = await connect();
         const userRepo = getRepository(User);
-        
         const nUser = new User();
 
         nUser.name = req.body.name;
