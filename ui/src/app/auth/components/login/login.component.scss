@@ -1,0 +1,133 @@
+
+.background {
+    background-image: url("../../../../assets/backgorund.jpg");
+    filter: blur(16px);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .login {
+      background-color: rgb(255,255,255); /* Fallback color */
+      background-color: rgba(255,255, 255, 0.5); /* Black w/opacity/see-through */
+      color: white;
+      font-weight: bold;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      width: 80%;
+      text-align: center;
+      width: 350px;
+      margin: auto;
+      height: 450px;
+      opacity: 0.85;
+  }
+  
+  .check {
+      float: left;
+      font-size: 80%;
+      margin: -25px 0 30px -7px;
+      color: #9b9292;
+  }
+  
+  h1 {
+      color: #000;    
+      font-size: 120%;
+      padding: 40px 0;
+  }
+  
+  input[type=text],
+  input[type=password] {
+      border: none;
+      background-color: #fff;
+      width: 80%;
+      height: 45px;
+      padding: 7px;
+      color: #222;
+      margin-bottom: 15px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: bold; 
+      padding-left: 20px; 
+  }
+  
+  input[type=checkbox] {
+      margin: 25px 6px 0 40px;
+  }
+  
+  input[type=submit] {
+      border: none;
+      width: 80%;
+      height: 45px;
+      padding: 7px;
+      text-transform: uppercase;
+      color: #fff;
+      font-weight: bold;
+      background-color: #142b61;
+      border-radius: 2px;
+  }
+  
+  input[type=submit]:hover {
+      background-color: rgb(172, 33, 98);
+      opacity: 1;
+      z-index: 999;
+  }
+  .sign-up {
+      font-size: 65%;
+      position: absolute;
+      bottom: 10px;
+      left: 25%;
+      text-decoration: none;
+      color: inherit;
+      padding-bottom: 5px;
+  }
+  
+  .social-media-signup {
+      padding-top: 30px;
+  }
+  
+  
+  .social-media-signup p {
+  
+      font-size: 65%;
+      color: #111;
+      padding-bottom: 10px;
+      margin-left: 20px;
+  }
+  
+  .social-media-signup a {
+      background-color: #fff;
+      color: #111;
+      text-decoration: none;
+      font-size: 65%;
+      margin-right: 4px;
+      padding: 6px 25px;
+      border: 1px solid rgb(218, 218, 218);     
+      font-weight: 500;
+  }
+  
+  .social.fb span{
+      font-size: 150%;
+      vertical-align: middle;
+      line-height: 120%;
+      margin-top: -2px;
+      margin-right: 4px;  
+      color: #3b5998;
+  }
+  
+  .social.google img {
+  
+      height: 17px;
+      width: auto;
+      margin-right: 2px;
+      vertical-align: middle;
+      line-height: 120%;
+      margin-top: -4px;
+  }
+  
+  ::placeholder {
+      color: #333;
+      font-weight: 300;
+  }

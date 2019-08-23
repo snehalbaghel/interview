@@ -1,1 +1,32 @@
-<p>login works!</p>
+<div class="background">
+
+</div>
+<div class="login">
+    <h1>Sign in</h1>
+    <form method="POST" action="" class="login-form">
+        <div class="field">
+            <input type="text" placeholder="Username" name="user-name" id="user-name" required>
+        </div>
+
+        <div class="field">  
+            <input type="password" placeholder="Password" name="password" id="password1" required>
+        </div>
+        
+          
+        <div class="submit-button">
+            <input type="submit" value="Login">
+            <div class="field">
+                
+            </div>
+        </div>
+        
+        <div class="social-media-signup">
+            <p>Or login with</p>
+            <a href="#" class="social fb"><span class="ion ion-logo-facebook"></span> Facebook</a>
+            <a href="#" class="social google"><img src="../../../../assets/google-icon.png" alt="google icon"> Google</a>
+        </div>
+    </form>
+    
+</div>
+
+<router-outlet></router-outlet>

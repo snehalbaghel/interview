@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+/* ----------------------------------------- */
+/* ----------BASIC-SETUP-------------------- */
+/* ----------------------------------------- */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    color: #555;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    text-rendering: optimizeLegibility;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
