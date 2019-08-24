@@ -1,22 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+// import { AppRoutingModule } from './app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { LoginComponent } from './auth/components/login/login.component';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
+import { AuthModule } from './auth/auth.module';
+import { CoreModule } from './core/core.module';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+
 
 @NgModule({
   declarations: [
-    LoginComponent
+    AppComponent
   ],
   imports: [
+    AppRoutingModule,
     HttpClientModule,
     BrowserModule,
-    AppRoutingModule,
     FlexLayoutModule,
+    AuthModule,
+    CoreModule
   ],
   providers: [],
-  bootstrap: [LoginComponent]
+  bootstrap: [AppComponent],
+  exports: [AppRoutingModule]
 })
 export class AppModule { }
