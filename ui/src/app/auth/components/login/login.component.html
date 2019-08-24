@@ -3,18 +3,20 @@
 </div>
 <div class="login">
     <h1>Sign in</h1>
-    <form method="POST" action="" class="login-form">
+    <form [formGroup]="loginForm" class="login-form">
         <div class="field">
-            <input type="text" placeholder="Username" name="user-name" id="user-name" required>
+            <input type="text" placeholder="Username" formControlName="username"
+            name="user-name" id="user-name" required>
         </div>
 
         <div class="field">  
-            <input type="password" placeholder="Password" name="password" id="password1" required>
+            <input type="password" placeholder="Password" formControlName="password"
+            name="password" id="password1" required>
         </div>
         
           
-        <div class="submit-button">
-            <input type="submit" value="Login">
+        <div class="submit-button" (click)="login()" >
+            <input class="submit-input" value="Login">
             <div class="field">
                 
             </div>

@@ -5,6 +5,7 @@ import { UnauthorizedComponent } from './components/unauthorized/unauthorized.co
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { AuthGuard } from './guard/auth.guard';
 import { AuthStoreService } from './services/auth-store.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -14,7 +15,9 @@ import { AuthStoreService } from './services/auth-store.service';
     ForbiddenComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class AuthModule { }

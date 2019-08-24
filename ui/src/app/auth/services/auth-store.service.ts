@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthStoreService {
 
-  static readonly BASE_AUTH_URL = 'http://127.0.0.1:3000/auth/';
+  static readonly BASE_AUTH_URL = 'http://127.0.0.1:3000/auth';
 
   private readonly isAuthenticatedBS = new BehaviorSubject<boolean>(false);
   readonly isAuthenticated$ = this.isAuthenticatedBS.asObservable();

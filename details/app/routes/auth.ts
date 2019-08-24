@@ -12,13 +12,13 @@ route.post('/login',
                 return next(err);
             }
             if(!user) {
-                return res.status(401).json(info)
+                return res.status(401).json({is_authenticated: false})
             }
 
             req.login(user, (err) => {
                 if(err) return next(err);
 
-                return res.status(200).json(user);
+                return res.status(200).json({is_authenticated: true});
             });
         })(req, res, next);
 });
