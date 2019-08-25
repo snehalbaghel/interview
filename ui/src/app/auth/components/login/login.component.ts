@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { skip, first} from 'rxjs/operators';
 import { LoginData } from '../../models/login';
+import { OAuthService } from 'angular-oauth2-oidc';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,10 +17,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     password: new FormControl(null, Validators.required)
   });
 
-  constructor(private authStore: AuthStoreService, private router: Router) {
+  constructor(private authStore: AuthStoreService, private router: Router, private oauthService: OAuthService) {
    }
 
-  login() {
+  private login() {
     const loginData: LoginData = this.loginForm.value;
     this.authStore.login(loginData);
     this.authStore.isAuthenticated$
@@ -36,6 +37,10 @@ export class LoginComponent implements OnInit, OnDestroy {
         console.log(err);
       }
     );
+  }
+
+  private googleLogin() {
+    this.oauthService.initCodeFlow();
   }
 
   ngOnDestroy() {

@@ -1,14 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-// import { AppRoutingModule } from './app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from './auth/auth.module';
-import { CoreModule } from './core/core.module';
+// import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeModule } from './home/home.module';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 
 @NgModule({
@@ -22,7 +22,7 @@ import { HomeModule } from './home/home.module';
     FlexLayoutModule,
     AuthModule,
     HomeModule,
-    CoreModule
+    OAuthModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -6,6 +6,7 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { AuthGuard } from './guard/auth.guard';
 import { AuthStoreService } from './services/auth-store.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 // import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -13,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     UnauthorizedComponent,
     ForbiddenComponent,
+    SignUpComponent
   ],
   imports: [
     CommonModule,
