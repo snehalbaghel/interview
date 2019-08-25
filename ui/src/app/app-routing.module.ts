@@ -4,14 +4,14 @@ import { LoginComponent } from './auth/components/login/login.component';
 import { AuthGuard } from './auth/guard/auth.guard';
 import { ForbiddenComponent } from './auth/components/forbidden/forbidden.component';
 import { UnauthorizedComponent } from './auth/components/unauthorized/unauthorized.component';
-import { DetailsComponent } from './home/components/details/details.component';
 import { SignUpComponent } from './auth/components/sign-up/sign-up.component';
+import { TabsComponent } from './auth/components/tabs/tabs.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full', canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
-  { path: 'details', component: DetailsComponent, canActivate: [AuthGuard] },
+  { path: 'details', component: TabsComponent, canActivate: [AuthGuard] },
   { path: 'Forbidden', component: ForbiddenComponent },
   { path: 'Unauthorized', component: UnauthorizedComponent }
 ];

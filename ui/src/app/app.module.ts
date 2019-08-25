@@ -10,7 +10,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeModule } from './home/home.module';
 import { OAuthModule } from 'angular-oauth2-oidc';
 
-
 @NgModule({
   declarations: [
     AppComponent
@@ -27,5 +26,6 @@ import { OAuthModule } from 'angular-oauth2-oidc';
   providers: [],
   bootstrap: [AppComponent],
   exports: [AppRoutingModule]
+
 })
 export class AppModule { }

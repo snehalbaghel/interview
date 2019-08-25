@@ -39,8 +39,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     );
   }
 
-  private googleLogin() {
-    this.oauthService.initCodeFlow();
+  private async googleLogin() {
+    // this.oauthService.configure(authCodeFlowConfig);
+    await this.oauthService.loadDiscoveryDocument();
+    sessionStorage.setItem('flow', 'code');
+
+    this.oauthService.initLoginFlow();
   }
 
   ngOnDestroy() {

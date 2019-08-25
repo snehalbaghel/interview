@@ -1,0 +1,86 @@
+<div class="container">
+    <div class="tab-slider--nav">
+      <ul class="tab-slider--tabs">
+        <li class="tab-slider--trigger" [class.active]="viewMode == 'tab1'" rel="tab1" (click)="viewMode ='tab1'">Tab 1</li>
+        <li class="tab-slider--trigger" [class.active]="viewMode == 'tab2'" rel="tab2" (click)="viewMode ='tab2'">Tab 2</li>
+      </ul>
+    </div>
+    <div class="tab-slider--container" [ngSwitch]="viewMode">
+      <div id="tab1" class="tab-slider--body" *ngSwitchCase="'tab1'">
+        <h2>Update Information</h2>
+        <form id="create-form">
+          <div class="field">
+              <div class="label">
+                  <label for="first-name">First Name:</label>
+              </div>
+              <div class="input-type">
+                  <input type="text" placeholder="Your first name" name="first-name" id="first-name">
+              </div>
+          </div>
+
+          <div class="field">
+            <div class="label">
+                <label for="second-name">Second Name:</label>
+            </div>
+            <div class="input-type">
+                <input type="text" placeholder="You second name" name="second-name" id="second-name">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="label">
+                <label for="number">Mobile Number:</label>
+            </div>
+            <div class="input-type">
+                <input type="text" placeholder="Your mobile number" name="number" id="number">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="label address">
+                <label for="address">Address:</label>
+            </div>
+            <div class="input-type">
+              <textarea name="address" id="address" placeholder="" required=""></textarea>
+            </div>
+          </div>
+          
+          <div class="field">
+            <div class="label">
+                <label for="city">City:</label>
+            </div>
+            <div class="input-type">
+                <input type="text" placeholder="Enter your city" name="city" id="city">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="label">
+                <label for="state">State:</label>
+            </div>
+            <div class="input-type">
+                <input type="text" placeholder="Enter your state" name="state" id="state">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="label">
+                <label for="country">Country:</label>
+            </div>
+            <div class="input-type">
+                <input type="text" placeholder="Enter country" name="country" id="country">
+            </div>
+          </div>
+
+          <div class="buttons">
+              <input type="submit" value="Update" class="button">
+          </div>
+      </form>
+      </div>
+      <div id="tab2" class="tab-slider--body" *ngSwitchCase="'tab2'">
+        <h2>Second Tab</h2>
+        <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum. Nulla vitae elit libero, a pharetra augue. Cras mattis consectetur purus sit amet fermentum. Aenean eu leo
+          quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+      </div>
+    </div>
+  </div> 
