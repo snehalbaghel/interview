@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-tabs',
@@ -9,7 +11,12 @@ export class TabsComponent implements OnInit {
 
   name = '!!!';
   viewMode = 'tab1';
-  constructor() { }
+  profile$: Observable<any>;
+
+  constructor(private userService: UserService) {
+    this.profile$ = this.userService.getProfile();
+  }
+
 
   ngOnInit() {
   }

@@ -10,9 +10,10 @@ passport.use(new LocalStratergy(
         try {
             const userRepo = getRepository(User);
             const user: User | undefined = await userRepo.findOne({ where: {username: username} });
+            console.log(user);
             if(user) {
                 if(await user.comparePassword(password)) {
-                    return done(null, user);
+                    return done(null, user, { message: 'User logged in' });
                 } 
 
                 return done(null, false, { message: 'Incorrect password' });

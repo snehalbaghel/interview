@@ -17,9 +17,9 @@ class App {
     constructor() {
         this.app = express()
 
-        this.connectDb()
-        this.setup()
-        this.setupSession()
+        this.connectDb();
+        this.setup();
+        this.setupSession();
         this.setupPassport();
         
         this.app.use('/', routes)
@@ -41,7 +41,7 @@ class App {
 
     private setup(): void {
         this.app.use(cors({
-            origin:['http://localhost:4200','http://127.0.0.1:4200'],
+            origin:['https://localhost:4200','https://127.0.0.1:4200'],
             credentials:true
           }));
         this.app.use(bodyParser.json());

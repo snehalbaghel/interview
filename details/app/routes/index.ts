@@ -1,33 +1,14 @@
-import { Request, Response, Router, NextFunction } from 'express'
+import { Router } from 'express'
 import authRoute from './auth'
-import { getRepository } from "typeorm";
-import { User } from "../entity/user";
+import signUpRoute from './signUp';
+import userRoute from './user';
 
 const route: Router = Router()
 
-route.get('/ping', (req: Request, res: Response) => {
-    res.status(200).json({ message: "pong" })
-})
+route.use('/signup', signUpRoute);
 
-route.post('/test/signup', async (req: Request, res: Response, next: NextFunction) => {
-    try {
-        const userRepo = getRepository(User);
-        const nUser = new User();
+route.use('/auth', authRoute);
 
-        nUser.name = req.body.name;
-        nUser.username = req.body.username;
-        nUser.passwordHash = req.body.password;
-
-        const user = await userRepo.save(nUser);
-
-        res.status(200).json(user);
-
-    } catch(err) {
-        console.error(err);
-        return next(err);
-    }
-});
-
-route.use('/auth', authRoute)
+route.use('/user', userRoute);
 
 export default route

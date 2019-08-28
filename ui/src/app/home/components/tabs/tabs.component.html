@@ -78,9 +78,8 @@
       </form>
       </div>
       <div id="tab2" class="tab-slider--body" *ngSwitchCase="'tab2'">
-        <h2>Second Tab</h2>
-        <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum. Nulla vitae elit libero, a pharetra augue. Cras mattis consectetur purus sit amet fermentum. Aenean eu leo
-          quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+        <h2>User Profile</h2>
+        <div *ngIf="profile$ | async; let user">{{user.name}}</div>
       </div>
     </div>
   </div> 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { LoginData } from '../models/login';
+import { LoginData, ID } from '../models/login';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -10,17 +10,27 @@ export class AuthStoreService {
 
   static readonly BASE_AUTH_URL = 'http://127.0.0.1:3000/auth';
 
-  private readonly isAuthenticatedBS = new BehaviorSubject<boolean>(false);
+  private readonly isAuthenticatedBS = new BehaviorSubject<boolean>(localStorage.getItem('isAuthenticated') === 'true');
   readonly isAuthenticated$ = this.isAuthenticatedBS.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  login(loginData: LoginData) {
-    this.http.post<{is_authenticated: boolean}>(`${AuthStoreService.BASE_AUTH_URL}/login`, loginData)
-        .subscribe( auth => {
-          this.isAuthenticated =  auth.is_authenticated;
+  getIsAuth() {
+    this.http.get<{is_authenticated: boolean}>(`${AuthStoreService.BASE_AUTH_URL}/isAuthenticated`)
+        .subscribe(res => {
+          this.isAuthenticated = res.is_authenticated;
+          localStorage.setItem('isAuthenticated', res.is_authenticated.toString());
         });
-    // .pipe(map(res => ({ isAuthenticated: res.is_authenticated})));
+  }
+
+  postLogin(loginData: LoginData) {
+    this.http.post<{is_authenticated: boolean}>(`${AuthStoreService.BASE_AUTH_URL}/login`, loginData)
+        .subscribe( res => {
+          console.log(res)
+          this.isAuthenticated =  res.is_authenticated;
+          localStorage.setItem('isAuthenticated', res.is_authenticated.toString());
+        });
   }
 
   private set isAuthenticated(flag: boolean) {
@@ -30,4 +40,13 @@ export class AuthStoreService {
   private get isAuthenticated(): boolean {
     return this.isAuthenticatedBS.getValue();
   }
+
+  postToken(id: ID) {
+    this.http.post<{is_authenticated: boolean}>(`${AuthStoreService.BASE_AUTH_URL}/verify/google`, id)
+        .subscribe( res => {
+          this.isAuthenticated = res.is_authenticated;
+          localStorage.setItem('isAuthenticated', res.is_authenticated.toString());
+        });
+  }
+
 }

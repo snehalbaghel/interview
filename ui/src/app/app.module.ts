@@ -4,11 +4,11 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from './auth/auth.module';
-// import { CoreModule } from './core/core.module';
-import { AppComponent } from './app.component';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeModule } from './home/home.module';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     HomeModule,
     OAuthModule.forRoot()
   ],
-  providers: [],
+  providers: [{provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}],
   bootstrap: [AppComponent],
   exports: [AppRoutingModule]
 
