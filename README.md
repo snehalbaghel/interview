@@ -11,4 +11,3 @@
 
 ### TODO
 - [ ] docker compose up
-- [ ] fix inconsistent session id
