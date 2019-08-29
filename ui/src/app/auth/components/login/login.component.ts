@@ -17,40 +17,12 @@ export class LoginComponent implements OnInit {
     password: new FormControl(null, Validators.required)
   });
 
-  constructor(private authStore: AuthStoreService, private router: Router, private oauthService: OAuthService) {
-    this.authStore.isAuthenticated$
-      .subscribe(
-      auth => {
-        console.log(auth);
-
-        if (auth) {
-          this.router.navigate(['details']);
-        }
-
-      },
-      err => {
-        console.log(err);
-      }
-      );
-  }
+  constructor(private authStore: AuthStoreService, private router: Router, private oauthService: OAuthService) {   }
 
   private login() {
     const loginData: LoginData = this.loginForm.value;
     console.log(loginData);
     this.authStore.postLogin(loginData);
-    this.authStore.isAuthenticated$
-      .pipe(
-        skip(1),
-        first()
-        ).subscribe(
-      auth => {
-        console.log(auth);
-        this.router.navigate(['details']);
-      },
-      err => {
-        console.log(err);
-      }
-    );
   }
 
   private async googleLogin() {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { LoginData, ID } from '../models/login';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,11 @@ export class AuthStoreService {
   }
 
   getIsAuth() {
-    this.http.get<{is_authenticated: boolean}>(`${AuthStoreService.BASE_AUTH_URL}/isAuthenticated`)
+    this.http.get<{is_authenticated: boolean}>(`${AuthStoreService.BASE_AUTH_URL}/isAuthenticated`,
+        { withCredentials: true,
+          headers: new HttpHeaders().append('Content-Type', 'application/json')
+        }
+        )
         .subscribe(res => {
           this.isAuthenticated = res.is_authenticated;
           localStorage.setItem('isAuthenticated', res.is_authenticated.toString());
@@ -25,9 +29,13 @@ export class AuthStoreService {
   }
 
   postLogin(loginData: LoginData) {
-    this.http.post<{is_authenticated: boolean}>(`${AuthStoreService.BASE_AUTH_URL}/login`, loginData)
+    this.http.post<{is_authenticated: boolean}>(`${AuthStoreService.BASE_AUTH_URL}/login`, loginData,
+        { withCredentials: true,
+          headers: new HttpHeaders().append('Content-Type', 'application/json')
+        }
+        )
         .subscribe( res => {
-          console.log(res)
+          console.log(res);
           this.isAuthenticated =  res.is_authenticated;
           localStorage.setItem('isAuthenticated', res.is_authenticated.toString());
         });
@@ -42,7 +50,11 @@ export class AuthStoreService {
   }
 
   postToken(id: ID) {
-    this.http.post<{is_authenticated: boolean}>(`${AuthStoreService.BASE_AUTH_URL}/verify/google`, id)
+    this.http.post<{is_authenticated: boolean}>(`${AuthStoreService.BASE_AUTH_URL}/verify/google`, id,
+        { withCredentials: true,
+          headers: new HttpHeaders().append('Content-Type', 'application/json')
+        }
+        )
         .subscribe( res => {
           this.isAuthenticated = res.is_authenticated;
           localStorage.setItem('isAuthenticated', res.is_authenticated.toString());

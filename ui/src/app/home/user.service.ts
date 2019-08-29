@@ -21,7 +21,7 @@ export class UserService {
   }
 
   updateProfile(profile) {
-    return this.http.post(UserService.BASE_URL + 'addItem', profile , {
+    return this.http.post(UserService.BASE_URL + '/profile', profile , {
       observe: 'body',
       withCredentials: true,
       headers: new HttpHeaders().append('Content-Type', 'application/json')

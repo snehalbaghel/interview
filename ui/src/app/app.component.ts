@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { OAuthService, JwksValidationHandler } from 'angular-oauth2-oidc';
 import { authConfig } from './auth.config';
-import { filter } from 'rxjs/operators';
+import { filter, tap } from 'rxjs/operators';
 import { AuthStoreService } from './auth/services/auth-store.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,8 +11,27 @@ import { AuthStoreService } from './auth/services/auth-store.service';
 })
 export class AppComponent {
 
-  constructor(private oauthService: OAuthService, private authStore: AuthStoreService) {
+  constructor(private oauthService: OAuthService, private authStore: AuthStoreService, private router: Router) {
     this.configure();
+    authStore.getIsAuth();
+    this.authStore.isAuthenticated$
+      .subscribe(
+      auth => {
+        console.log(auth);
+        if (auth) {
+          if (this.router.url === '/login') {
+          this.router.navigate(['details']);
+          }
+        } else {
+          if (this.router.url === '/details') {
+            this.router.navigate(['login']);
+          }
+        }
+      },
+      err => {
+        console.log(err);
+      }
+      );
   }
 
   private configure() {
@@ -20,7 +40,9 @@ export class AppComponent {
     this.oauthService.setStorage(localStorage);
     this.oauthService.loadDiscoveryDocumentAndTryLogin();
     this.oauthService.events
-      .pipe(filter((event: any) => event.type === 'token_received'))
+      .pipe(
+        filter((event: any) => event.type === 'token_received')
+      )
       .subscribe(() => this.handleToken());
   }
 
@@ -38,6 +60,5 @@ export class AppComponent {
   get access_token() {
     return this.oauthService.getAccessToken();
   }
-
 
 }

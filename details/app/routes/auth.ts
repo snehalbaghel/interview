@@ -10,7 +10,7 @@ import signUp from './signUp.controller';
 const route: Router = Router()
 
 route.get('/isAuthenticated', (req: Request, res:Response) => {
-    return res.status(200).json(req.isAuthenticated())
+    return res.status(200).json({is_authenticated: req.isAuthenticated()})
 })
 
 route.post('/login', 
@@ -29,7 +29,7 @@ route.post('/login',
 
                 return res.status(200).json({is_authenticated: true, ...info});
             });
-        });
+        })(req, res, next);
 });
 
 route.post('/logout',(req: Request, res: Response, next: NextFunction) => {
