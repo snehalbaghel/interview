@@ -1,0 +1,109 @@
+    <!-- <div class="tab-slider--nav">
+      <ul class="tab-slider--tabs">
+        <li class="tab-slider--trigger" [class.active]="viewMode == 'tab1'" rel="tab1" (click)="viewMode ='tab1'">Tab 1</li>
+        <li class="tab-slider--trigger" [class.active]="viewMode == 'tab2'" rel="tab2" (click)="viewMode ='tab2'">Tab 2</li>
+      </ul>
+    </div> -->
+<mat-toolbar class='mat-elevation-z1'>
+  <mat-toolbar-row>
+                
+    <span class="app-name toolbar-item ">User Profile</span> 
+
+    <span class="spacer"></span>
+    <button class="tab-slider--trigger toolbar-item" mat-stroked-button [class.active]="viewMode == 'tab1'" rel="tab1" (click)="viewMode ='tab1'">Update</button>
+    <button class="tab-slider--trigger toolbar-item" mat-stroked-button [class.active]="viewMode == 'tab2'" rel="tab2" (click)="viewMode ='tab2'">View</button>
+  
+    
+    <span class="spacer"></span>
+      
+    <button  class="toolbar-item" mat-stroked-button (click)="logout()">Logout</button>
+    
+    
+
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="container" *ngIf="profile$ | async; let user">
+    <div class="tab-slider--container" [ngSwitch]="viewMode">
+      <div id="tab1" class="tab-slider--body" *ngSwitchCase="'tab1'">
+        <br>
+        <br>
+        <h2>Update Profile</h2>
+        <br>
+        <form id="create-form" [formGroup]="updateForm">
+          <div class="field">
+              <div class="label">
+                  <label for="first-name">First Name</label>
+              </div>
+              <div class="input-type">
+                  <input type="text" formControlName="givenName" placeholder="Your first name" value="{{ user.givenName }}" name="first-name" id="first-name">
+              </div>
+          </div>
+
+          <div class="field">
+            <div class="label">
+                <label for="second-name">Second Name</label>
+            </div>
+            <div class="input-type">
+                <input type="text" formControlName="familyName" placeholder="You second name" name="second-name"  value="{{ user.familyName }}" id="second-name">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="label">
+                <label for="number">Mobile Number</label>
+            </div>
+            <div class="input-type">
+                <input type="text" formControlName="mobileNo" placeholder="Your mobile number"  value="{{ user.mobileNo }}" name="number" id="number">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="label address">
+                <label for="address">Address</label>
+            </div>
+            <div class="input-type">
+              <textarea name="address" formControlName="address" id="address"  value="{{ user.address }}" placeholder="" required=""></textarea>
+            </div>
+          </div>
+          
+          <div class="field">
+            <div class="label">
+                <label for="city">City</label>
+            </div>
+            <div class="input-type">
+                <input type="text" formControlName="city" placeholder="Enter your city"  value="{{ user.city }}" name="city" id="city">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="label">
+                <label for="state">State</label>
+            </div>
+            <div class="input-type">
+                <input type="text" formControlName="state" placeholder="Enter your state"  value="{{ user.state }}" name="state" id="state">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="label">
+                <label for="country">Country</label>
+            </div>
+            <div class="input-type">
+                <input type="text" formControlName="country" placeholder="Enter country"  value="{{ user.country }}" name="country" id="country">
+            </div>
+          </div>
+
+          <div class="buttons" (click)="updateProfile()">
+              <input type="submit" value="Update" class="button">
+          </div>
+      </form>
+      </div>
+      <div id="tab2" class="tab-slider--body" *ngSwitchCase="'tab2'">
+        <br>
+        <br>
+        <h2>View Profile</h2>
+        <br>
+        <div>{{user | json}}</div>
+      </div>
+    </div>
+  </div> 
