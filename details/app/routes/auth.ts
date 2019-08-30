@@ -33,10 +33,16 @@ route.post('/login',
 });
 
 route.post('/logout',(req: Request, res: Response, next: NextFunction) => {
-    if(req.isAuthenticated()) {
-        req.logout();
-    }
-    return res.status(200);
+    console.log(req.isAuthenticated())
+    // if(req.isAuthenticated()) {
+        // req.logout();
+    // }
+    console.log(req.sessionID.toString() + "cool")
+    req.logOut()
+    if(req.session)
+    req.session.destroy(function (err) {
+        return res.status(200).json({is_authenticated: false, message: 'User logged out'});
+    });
 });
 
 route.post('/verify/google', async (req: Request, res: Response, next: NextFunction) => {

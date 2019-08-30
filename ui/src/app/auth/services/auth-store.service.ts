@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { LoginData, ID } from '../models/login';
+import { LoginData, ID, AuthResponse } from '../models/login';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class AuthStoreService {
   }
 
   getIsAuth() {
-    this.http.get<{is_authenticated: boolean}>(`${AuthStoreService.BASE_AUTH_URL}/isAuthenticated`,
+    this.http.get<AuthResponse>(`${AuthStoreService.BASE_AUTH_URL}/isAuthenticated`,
         { withCredentials: true,
           headers: new HttpHeaders().append('Content-Type', 'application/json')
         }
@@ -29,7 +29,7 @@ export class AuthStoreService {
   }
 
   postLogin(loginData: LoginData) {
-    this.http.post<{is_authenticated: boolean}>(`${AuthStoreService.BASE_AUTH_URL}/login`, loginData,
+    this.http.post<AuthResponse>(`${AuthStoreService.BASE_AUTH_URL}/login`, loginData,
         { withCredentials: true,
           headers: new HttpHeaders().append('Content-Type', 'application/json')
         }
@@ -50,11 +50,22 @@ export class AuthStoreService {
   }
 
   postToken(id: ID) {
-    this.http.post<{is_authenticated: boolean}>(`${AuthStoreService.BASE_AUTH_URL}/verify/google`, id,
+    this.http.post<AuthResponse>(`${AuthStoreService.BASE_AUTH_URL}/verify/google`, id,
         { withCredentials: true,
           headers: new HttpHeaders().append('Content-Type', 'application/json')
         }
         )
+        .subscribe( res => {
+          this.isAuthenticated = res.is_authenticated;
+          localStorage.setItem('isAuthenticated', res.is_authenticated.toString());
+        });
+  }
+
+  postLogout() {
+    this.http.post<AuthResponse>(`${AuthStoreService.BASE_AUTH_URL}/logout`, null,
+        { withCredentials: true,
+          headers: new HttpHeaders().append('Content-Type', 'application/json')
+        })
         .subscribe( res => {
           this.isAuthenticated = res.is_authenticated;
           localStorage.setItem('isAuthenticated', res.is_authenticated.toString());
